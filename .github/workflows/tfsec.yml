@@ -26,6 +26,13 @@ jobs:
       - name: Clone repo
         uses: actions/checkout@v3
 
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+         with:
+         role-to-assume: arn:aws:iam::123456789100:role/my-github-actions-role
+         aws-region: [us-east-2,eu-west-1,us-east-1]
+
+
       - name: Run tfsec
         uses: aquasecurity/tfsec-sarif-action@9a83b5c3524f825c020e356335855741fd02745f
         with:
